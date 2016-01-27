@@ -1,0 +1,112 @@
+" Включаем несовместимость настроек с предшественником Vi
+set nocompatible
+" Включаем перенос строк (set nowrap отключает перенос строк)
+set wrap
+" Перенос строк по словам, а не по буквам
+set linebreak
+" Включаем отображение выполняемой в данный момент команды в правом нижнем углу экрана
+set showcmd
+" Включить бекспейс
+set backspace=2
+" Показывать строку вкладок всегда
+set showtabline=2
+" Показывать строку статуса всегда
+ set laststatus=2
+" Формат заголовка
+set titlestring=%t%(\ %m%)%(\ %r%)%(\ %h%)%(\ %w%)%(\ (%{expand(\»%:p:~:h\»)})%)\ -\ VIM
+" Включаем отображение дополнительной информации в статусной строке
+set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ %l,%c%V\ %P
+" Задаем фон терминала, что влияет на подсветку
+set background=dark
+" Пробелы вместо табуляции
+set expandtab
+" Включаем ‘умную’ автоматическую расстановку отступов
+ set smartindent
+" Копирует отступ от предыдущей строки » наследовать отступы предыдущей строки
+ set autoindent
+" Размер табуляции
+set tabstop=2
+" Размер сдвига при нажатии на клавиши «<» и «>»
+set shiftwidth=2
+" Подсветка текущей строки
+set cursorline
+" При вставке фрагмента сохраняет отступы
+set pastetoggle=
+" разбивать окно горизонтально снизу
+set splitbelow
+" разбивать окно вертикально справа
+set splitright
+" Метод фолдинга
+set foldmethod=manual
+" Опции авто-дополнения
+set completeopt=longest,menuone
+" Включаем подсветку выражения, которое ищется в тексте
+set hlsearch
+" Отключение подсветки найденных выражений
+set nohlsearch
+" При поиске перескакивать на найденный текст в процессе набора строки (инкрементальный поиск)
+set incsearch
+" Если искомое выражения содержит символы в верхнем регистре — ищет с учётом регистра, иначе — без учёта
+set smartcase
+" Останавливать поиск при достижении конца файла
+set nowrapscan
+" Игнорировать регистр букв при поиске
+set ignorecase
+" предлагать авто-дополнение на основе уже введённого регистра
+set infercase
+" Формат файла, который влияет на окончания строк — будет перебирать в указанном порядке
+set ffs=unix,dos,mac
+" Список кодировок файлов для авто-определения
+set fileencodings=utf-8,koi8-r,cp1251,cp866
+" Показывать все возможные кандидаты для выбора при авто-завершении команд в командной строке
+set wildmenu
+set wcm=<TAB>
+" Переключение кодировки чтения файла по <F7>
+menu Encoding.Read.UTF8<TAB><F7> :e ++enc=utf8 <CR>
+menu Encoding.Read.KOI8-R<TAB><F7> :e ++enc=koi8-r<CR>
+menu Encoding.Read.CP1251<TAB><F7> :e ++enc=cp1251<CR>
+menu Encoding.Read.CP866<TAB><F7> :e ++enc=cp866<CR>
+map <F7> :emenu Encoding.Read.<TAB>
+" Переключение кодировки сохранения файла по <F8>
+menu Encoding.Write.UTF8<TAB><F8> :set fenc=utf8 <CR>
+menu Encoding.Write.KOI8-R<TAB><F8> :set fenc=koi8-r<CR>
+menu Encoding.Write.CP1251<TAB><F8> :set fenc=cp1251<CR>
+menu Encoding.Write.CP866<TAB><F8> :set fenc=cp866<CR>
+map <F8> :emenu Encoding.Write.
+" По умолчанию проверка орфографии выключена (setlocal nospell). Меню для управления этими настройками по <F9>
+menu SpellLang.nospell<TAB><F9> :setlocal nospell <CR>
+menu SpellLang.RU<TAB><F9>  :setlocal spell spelllang=ru_yo <CR>
+menu SpellLang.EN<TAB><F9>  :setlocal spell spelllang=en_us <CR>
+" Переключение табов (вкладок) с помощью SHIFT+TAB и CTRL+TAB
+map <F1> :tabprevious<CR>
+nmap <F1> :tabprevious<CR>
+imap <F1> <Esc>:tabprevious<CR>i
+map <F2> :tabnext<CR>
+nmap <F2> :tabnext<CR>
+imap <F2> <Esc>:tabnext<CR>i
+" Открытие\закрытие новой вкладки по CTRL+T и CTRL+W
+nmap <C-w> :tabnew<CR>
+imap <C-w> <Esc>:tabnew<CR>a
+nmap <C-d> :tabclose<CR>
+imap <C-d> <Esc>:tabclose<CR>
+" Вкл/Выкл нумерацию
+nmap <F4> :set number<CR>
+imap <F4> <Esc>:set number<CR>
+nmap <F5> :set number!<CR>
+imap <F5> <Esc>:set number!<CR>
+" Выполнить внутри vim
+nnoremap <silent> <F10> :!bash %<CR>
+nnoremap <silent> <F11> :!ruby %<CR>
+" Простое переключение окон
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+if &term == "xterm"
+  set t_Co=256
+endif
+
+syntax enable
+colorscheme molokai
+
