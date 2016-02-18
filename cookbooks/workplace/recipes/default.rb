@@ -59,5 +59,7 @@ execute 'allow sudo' do
   command 'sudo sed -i \'/.*NOPASSWD: ALL/ a \vik        ALL=(ALL)      NOPASSWD: ALL\' /etc/sudoers'
 end
 
-
+execute 'make git colorful' do
+  git config --global color.ui auto
+end
 
