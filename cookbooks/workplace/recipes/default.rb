@@ -23,8 +23,8 @@ end
 %w(/root /home/vik).each do |path|
   directory "#{path}/.vim/colors" do
     recursive true
-	action :create
-  end
+      action :create
+    end
 
   execute 'copy molokai style' do
     command "cp /tmp/vim_colors/colors/molokai.vim #{path}/.vim/colors/molokai.vim"
@@ -32,9 +32,9 @@ end
 
   %w(bashrc vimrc tmux.conf).each do |file|
   	template "#{path}/.#{file}" do
-      source "#{file}.erb"
-	  variables(
-	  'path' => path
+          source "#{file}.erb"
+          variables(
+	    'path' => path
 	  )
 	end
   end
