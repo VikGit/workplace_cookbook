@@ -14,7 +14,7 @@ user 'vik' do
 end
 
 package 'epel-release'
-package ['vim', 'tmux', 'git', 'zip', 'unzip']
+package ['vim', 'tmux', 'git', 'zip', 'unzip', 'colordiff']
 
 git '/tmp/vim_colors' do
   repository 'https://github.com/tomasr/molokai.git'
