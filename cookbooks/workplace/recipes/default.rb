@@ -60,6 +60,6 @@ execute 'allow sudo' do
 end
 
 execute 'make git colorful' do
-  git config --global color.ui auto
+  command 'git config --global color.ui auto'
 end
 
