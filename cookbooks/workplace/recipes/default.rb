@@ -30,7 +30,7 @@ end
     command "cp /tmp/vim_colors/colors/molokai.vim #{path}/.vim/colors/molokai.vim"
   end
 
-  %w(bashrc vimrc tmux.conf).each do |file|
+  %w(bashrc vimrc).each do |file|
   	template "#{path}/.#{file}" do
           source "#{file}.erb"
           variables(
